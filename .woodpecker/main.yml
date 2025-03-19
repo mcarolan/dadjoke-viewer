@@ -13,11 +13,12 @@ steps:
       - npm run test:pact
 
   publish-pact:
-    image: docker:20.10.7-dind 
+    image: docker:dind
     environment:
       PACT_BROKER_BASE_URL: ${PACT_BROKER_BASE_URL}
     commands:
       - echo "Publishing Pact contract to broker..."
+      - docker &
       - |
         docker run --rm \
           -w /workspace \
