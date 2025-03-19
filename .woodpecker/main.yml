@@ -10,7 +10,7 @@ steps:
     image: node:20
     commands:
       - echo "Running Pact consumer tests..."
-      - npm test:pact
+      - npm run test:pact
 
   publish-pact:
     image: node:20
