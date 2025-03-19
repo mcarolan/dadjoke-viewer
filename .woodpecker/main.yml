@@ -13,7 +13,7 @@ steps:
       - npm run test:pact
 
   publish-pact:
-    image: docker:latest
+    image: docker:dind  # Using Docker-in-Docker image
     environment:
       PACT_BROKER_BASE_URL: ${PACT_BROKER_BASE_URL}
     commands:
@@ -23,8 +23,6 @@ steps:
           -w /workspace \
           -v ${PWD}:${PWD} \
           -e PACT_BROKER_BASE_URL \
-          -e PACT_BROKER_USERNAME \
-          -e PACT_BROKER_PASSWORD \
           pactfoundation/pact-cli:latest \
           publish \
           ${PWD}/pacts \
