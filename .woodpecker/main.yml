@@ -16,8 +16,4 @@ steps:
     image: node:20
     commands:
       - echo "Publishing pacts..."
-      - docker run --rm --network host \
-          -e PACT_BROKER_BASE_URL=http://pact-broker:9292 \
-          -v $(pwd)/pacts:/pacts \
-          pactfoundation/pact-cli:latest \
-          publish /pacts --consumer-app-version "$(git rev-parse --short HEAD)"
+      - npm run publish:pacts
