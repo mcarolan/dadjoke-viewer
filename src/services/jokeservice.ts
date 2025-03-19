@@ -10,7 +10,7 @@ export function createJokeService(baseUrl: string): JokeService {
   return {
     getJokes: async () => {
       try {
-        const response = await axios.get(`${/*  */ baseUrl}/jokes`);
+        const response = await axios.get(`${baseUrl}/jokes`);
         return response.data;
       } catch (error) {
         console.error("Error fetching jokes:", error);
