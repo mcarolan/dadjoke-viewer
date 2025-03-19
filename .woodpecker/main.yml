@@ -1,0 +1,21 @@
+# .woodpecker/dadjoke-viewer.yml
+steps:
+  setup:
+    image: node:20
+    commands:
+      - echo "Installing dependencies..."
+      - npm ci
+
+  run-tests:
+    image: node:20
+    commands:
+      - echo "Running Pact consumer tests..."
+      - npm test
+
+  publish-pact:
+    image: node:20
+    environment:
+      PACT_BROKER_BASE_URL: ${PACT_BROKER_BASE_URL}
+    commands:
+      - echo "Publishing Pact contract to broker..."
+      - npx pact-cli publish ./pacts --broker-base-url "$PACT_BROKER_BASE_URL" --consumer-app-version "$(git rev-parse --short HEAD)"
