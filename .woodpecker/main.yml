@@ -13,9 +13,11 @@ steps:
       - npm run test:pact
 
   publish-pact:
-    image: docker:dind  # Using Docker-in-Docker image
+    image: docker:latest
     environment:
       PACT_BROKER_BASE_URL: ${PACT_BROKER_BASE_URL}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  
     commands:
       - echo "Publishing Pact contract to broker..."
       - |
