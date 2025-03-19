@@ -18,7 +18,8 @@ steps:
       PACT_BROKER_BASE_URL: ${PACT_BROKER_BASE_URL}
     commands:
       - echo "Publishing Pact contract to broker..."
-      - docker run --rm \
+      - |
+        docker run --rm \
           -w ${PWD} \
           -v ${PWD}:${PWD} \
           -e PACT_BROKER_BASE_URL \
