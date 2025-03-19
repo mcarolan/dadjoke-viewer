@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test:pact": "jest --testPathPattern=tests/pact",
-    "publish:pacts": "pact publish ./pacts --consumer-app-version $(git rev-parse --short HEAD) --broker-base-url http://pact-broker:9292"
+    "publish:pacts": "pact-broker publish ./pacts --consumer-app-version=$(git rev-parse --short HEAD) --broker-base-url http://pact-broker:9292"
   },
   "dependencies": {
     "next": "15.2.3",
