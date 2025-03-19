@@ -22,7 +22,7 @@ steps:
         docker run --rm \
           -w /workspace \
           -v ${PWD}:${PWD} \
-          -v /var/run/docker.sock:/var/run/docker.sock
+          -v /var/run/docker.sock:/var/run/docker.sock \
           -e PACT_BROKER_BASE_URL \
           pactfoundation/pact-cli:latest \
           publish \
