@@ -16,4 +16,4 @@ steps:
     image: node:20
     commands:
       - echo "Publishing pacts..."
-      - npm run publish:pact
+      - npm run publish:pacts
