@@ -1,7 +1,4 @@
 # .woodpecker/dadjoke-viewer.yml
-when:
-  event: push
-
 steps:
   setup:
     image: node:20
