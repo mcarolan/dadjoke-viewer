@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "test:pact": "jest --testPathPattern=tests/pact",
-    "publish:pacts": "pact-broker publish ./pact/pacts --consumer-app-version=$(git rev-parse --short HEAD) --broker-base-url https://lasting-neatly-pig.ngrok-free.app"
+    "publish:pacts": "pact-broker publish ./pact/pacts --consumer-app-version=$(git rev-parse --short HEAD) --broker-base-url https://lasting-neatly-pig.ngrok-free.app",
+    "stub:dadjoke-service": "pact-stub-service https://lasting-neatly-pig.ngrok-free.app/pacts/provider/dadjoke-service/consumer/dadjoke-viewer/latest --port=8080"
   },
   "dependencies": {
     "next": "15.2.3",
