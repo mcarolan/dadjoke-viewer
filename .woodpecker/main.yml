@@ -16,4 +16,4 @@ steps:
     image: node:20
     commands:
       - echo "Publishing pacts..."
-      - npm run extract-api-version && npm run publish:pacts
+      - npm run publish:pacts
