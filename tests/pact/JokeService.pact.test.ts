@@ -2,6 +2,7 @@ import path from "path";
 import { Pact } from "@pact-foundation/pact";
 import { createJokeService, JokeService } from "../../src/services/jokeservice";
 import { like } from "@pact-foundation/pact/src/dsl/matchers";
+import { API_VERSION } from "../../src/config/config";
 
 const provider = new Pact({
   consumer: "dadjoke-viewer",
@@ -19,7 +20,7 @@ describe("JokeService Pact Test", () => {
     afterAll(() => provider.finalize());
 
     beforeEach(() => {
-        jokeService = createJokeService(provider.mockService.baseUrl);
+        jokeService = createJokeService(provider.mockService.baseUrl, API_VERSION);
     });
 
     test("should fetech a list of jokes", async () => {
@@ -34,7 +35,7 @@ describe("JokeService Pact Test", () => {
             uponReceiving: "a request for dad jokes",
             withRequest: {
                 method: "GET",
-                path: "/jokes"
+                path: `/api/${API_VERSION}/jokes`
             },
             willRespondWith: {
                 status: 200,

@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "extract-api-version": "node -e \"console.log(require('./src/config').API_VERSION)\" > .api-version",
     "test:pact": "jest --testPathPattern=tests/pact",
-    "publish:pacts": "pact-broker publish ./pact/pacts --consumer-app-version=$(git rev-parse --short HEAD) --broker-base-url https://lasting-neatly-pig.ngrok-free.app"
+    "publish:pacts": "PACT_PROVIDER_VERSION=$(cat .api-version) pact-broker publish ./pact/pacts --consumer-app-version=$(git rev-parse --short HEAD) --provider-app-version=$PACT_PROVIDER_VERSION --broker-base-url https://lasting-neatly-pig.ngrok-free.app"
   },
   "dependencies": {
     "next": "15.2.3",
