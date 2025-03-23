@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 import JokeView from "./jokeview";
 import { createJokeService, JokeService } from "@/services/jokeservice";
 import { JokeDTO } from "@/types/jokedto";
-import { API_BASE_URL } from "@/config/config";
+import { API_BASE_URL, API_VERSION } from "@/config/config";
 
 const App: React.FC = () => {
     const [jokes, setJokes] = useState<Joke[]>([]);
     const [currentJokeIndex, setCurrentJokeIndex] = useState<number>(0);
 
-    const jokeService = createJokeService(API_BASE_URL);
+    const jokeService = createJokeService(API_BASE_URL, API_VERSION);
 
     useEffect(() => {
             jokeService

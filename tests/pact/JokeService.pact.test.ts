@@ -25,10 +25,12 @@ describe("JokeService Pact Test", () => {
 
     test("should fetech a list of jokes", async () => {
         const firstJokeId = 1;
-        const firstJokeText = "Why don't skeletons fight each other? They don't have the guts.";
+        const firstJokeText = "Why don't skeletons fight each other?";
+        const firstJokePunchline = "They don't have the guts.";
 
         const secondJokeId = 2;
-        const secondJokeText = "I used to play piano by ear, but now I use my hands.";
+        const secondJokeText = "I used to play piano by ear"
+        const secondJokePunchline = "... but now I use my hands.";
 
         await provider.addInteraction({
             state: "there are 2 jokes available",
@@ -44,11 +46,13 @@ describe("JokeService Pact Test", () => {
                     jokes: [
                         {
                             id: like(firstJokeId),
-                            text: like(firstJokeText)
+                            text: like(firstJokeText),
+                            punchline: like(firstJokePunchline)
                         },
                         {
                             id: like(secondJokeId),
-                            text: like(secondJokeText)
+                            text: like(secondJokeText),
+                            punchline: like(secondJokePunchline)
                         }
                     ]
                 }
@@ -58,8 +62,8 @@ describe("JokeService Pact Test", () => {
         const jokeListResponse = await jokeService.getJokes();
 
         expect(jokeListResponse.jokes).toHaveLength(2);
-        expect(jokeListResponse.jokes[0]).toEqual({ id: firstJokeId, text: firstJokeText });
-        expect(jokeListResponse.jokes[1]).toEqual({ id: secondJokeId, text: secondJokeText });
+        expect(jokeListResponse.jokes[0]).toEqual({ id: firstJokeId, text: firstJokeText, punchline: firstJokePunchline  });
+        expect(jokeListResponse.jokes[1]).toEqual({ id: secondJokeId, text: secondJokeText, punchline: secondJokePunchline });
 
         await provider.verify();
     });
